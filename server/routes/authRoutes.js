@@ -1,0 +1,12 @@
+const express = require("express");
+const router = express.Router();
+const authController = require("../controllers/authController");
+const verifyToken = require("../controllers/verifyToken");
+router.post("/signup", authController.register);
+router.post("/signin", authController.login);
+router.get("/otp", authController.otp);
+router.get("/users", verifyToken, authController.getAll);
+router.put("/user/:id", verifyToken, authController.updateUser);
+// router.delete("/user/:id", verifyToken, authController.deleteUser);
+router.delete("/user", authController.deleteUser);
+module.exports = router;
